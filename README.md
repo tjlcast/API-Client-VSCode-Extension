@@ -48,12 +48,13 @@
 - [✨ Features](#-features)
 - [💻 Commands](#-commands)
 - [📚 Tech Stacks](#-tech-stacks)
-  - [This project was created using the following tech stacks:](#this-project-was-created-using-the-following-tech-stacks)
+    - [This project was created using the following tech stacks:](#this-project-was-created-using-the-following-tech-stacks)
 - [🗒 Changelog](#-changelog)
+    - [Current version 1.1.4](#current-version-114)
 - [👨🏻‍💻 Contributing](#-contributing)
-  - [🪜 Step-by-step guide on how to make a pull request](#-step-by-step-guide-on-how-to-make-a-pull-request)
-  - [🏗 Running the extension locally for development](#-running-the-extension-locally-for-development)
-  - [⚠️ Bugs or Suggestions](#️-bugs-or-suggestions)
+    - [🪜 Step-by-step guide on how to make a pull request](#-step-by-step-guide-on-how-to-make-a-pull-request)
+    - [🏗 Running the extension locally for development](#-running-the-extension-locally-for-development)
+    - [⚠️ Bugs or Suggestions](#️-bugs-or-suggestions)
 - [🫧 Contributors](#-contributors)
 - [📋 License](#-license)
 
@@ -187,6 +188,7 @@ I appreciate even the tiniest suggestion or contribution you make to this projec
 3. Run `npm run dev`
 4. Press F5 to launch extension development mode
 5. `command + p` or `ctrl + p` and type `> Developer: Toggle Developer Tools` to open browser console for easy debugging
+6. Run `vsce package --no-yarn` to build a offline installer package.
 
 #### ⚠️ Bugs or Suggestions
 
