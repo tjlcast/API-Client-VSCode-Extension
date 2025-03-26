@@ -1,9 +1,13 @@
-import Editor from "@monaco-editor/react";
+// import Editor from "@monaco-editor/react";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { OPTION, REQUEST, RESPONSE } from "../constants";
 import ResponsePreview from "../features/Response/Preview/ResponsePreview";
+
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-javascript"; // 根据需要引入语言模式
+import "ace-builds/src-noconflict/theme-github"; // 根据需要引入主题
 
 interface ICodeEditorProps {
   language: string;
@@ -41,9 +45,21 @@ const CodeEditor = ({
         handleBeautifyButton();
       }
 
-      setTimeout(async () => {
-        await editorRef.current.getAction("editor.action.formatDocument").run();
-      }, 200);
+      // setTimeout(async () => {
+      //   await editorRef.current.getAction("editor.action.formatDocument").run();
+      // }, 200);
+      try {
+        const beautifiedCode = JSON.stringify(
+          JSON.parse(codeEditorValue),
+          null,
+          2,
+        );
+        if (handleEditorChange) {
+          handleEditorChange(beautifiedCode);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   }, [shouldBeautifyEditor]);
 
@@ -72,14 +88,23 @@ const CodeEditor = ({
       {viewOption === RESPONSE.PREVIEW && previewMode ? (
         <ResponsePreview sourceCode={codeEditorValue} />
       ) : (
-        <Editor
-          height={editorHeight}
-          language={language}
-          theme={RESPONSE.THEME}
-          value={codeEditorValue}
-          options={editorOption}
+        // <Editor
+        //   height={editorHeight}
+        //   language={language}
+        //   theme={RESPONSE.THEME}
+        //   value={codeEditorValue}
+        //   options={editorOption}
+        //   onChange={handleEditorChange}
+        //   onMount={handleEditorOnMount}
+        // />
+        <AceEditor
+          mode="javascript" // 设置语言模式
+          theme="github" // 设置主题
           onChange={handleEditorChange}
-          onMount={handleEditorOnMount}
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{ $blockScrolling: true }}
+          value={codeEditorValue} // 替换为你的初始值
+          height={editorHeight} // 设置高度
         />
       )}
     </EditorWrapper>
